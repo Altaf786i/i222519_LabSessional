@@ -11,7 +11,7 @@ const MENU_SERVICE_URL = process.env.MENU_SERVICE_URL || 'http://localhost:3001'
 const INVENTORY_SERVICE_URL = process.env.INVENTORY_SERVICE_URL || 'http://localhost:3003';
 const CUSTOMER_SERVICE_URL = process.env.CUSTOMER_SERVICE_URL || 'http://localhost:3004';
 
-// Order processing endpoint
+
 app.post('/orders', async (req, res) => {
   try {
     const { customerId, items } = req.body;
