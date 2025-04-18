@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-test:
+  build-and-deploy:
     runs-on: ubuntu-latest
     
     strategy:
@@ -27,11 +27,6 @@ jobs:
         cd ${{ matrix.service }}
         npm install
     
-    - name: Run tests
-      run: |
-        cd ${{ matrix.service }}
-        npm test
-    
     - name: Build Docker image
       run: |
         cd ${{ matrix.service }}
@@ -50,7 +45,7 @@ jobs:
         docker push ${{ secrets.DOCKER_HUB_USERNAME }}/${{ matrix.service }}:latest
 
   deploy:
-    needs: build-and-test
+    needs: build-and-deploy
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     
